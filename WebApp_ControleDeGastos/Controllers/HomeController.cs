@@ -20,6 +20,7 @@ namespace WebApp_ControleDeGastos.Controllers
 
         public IActionResult Index()
         {
+            //teste
             return View();
         }
 
