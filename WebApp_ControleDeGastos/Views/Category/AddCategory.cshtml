@@ -1,0 +1,18 @@
+﻿@{
+    ViewData["Title"] = "Adicionar de Categoria";
+} 
+
+<div class="text-center">
+    <h3>Adicionar Categoria</h3>
+</div>
+
+<form>
+    <div class="form-group">
+        <label for="nome da categoria">Nome da Categoria</label>
+        <input type="text" class="form-control" placeholder="digite o nome da categoria">
+        <small class="form-text text-muted">Lembre-se de adicionar uma categoria que ainda não possui registro.</small>
+    </div>
+    <button type="submit" class="btn btn-primary">Alterar</button>
+    <a role="button" class="btn btn-secondary" asp-controller="Category" asp-action="Index">Voltar</a>
+
+</form>

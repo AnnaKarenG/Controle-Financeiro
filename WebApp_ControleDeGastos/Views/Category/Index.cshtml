@@ -1,0 +1,60 @@
+﻿@{
+    ViewData["Title"] = "Lista de Categorias";
+}
+<h2>Categorias</h2>
+<div class="text-center">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Identificador</th>
+                <th scope="col">Nome</th>
+                <th scope="col"></th>
+                <th scope="col">Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">1</th>
+                <td>Categoria tal</td>
+                <td></td>
+                <td>
+                    <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                        <a role="button" class="btn btn-primary" asp-controller="Category" asp-action="UpdateCategory">Editar</a>
+                        <a role="button" class="btn btn-danger">Excluir</a>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">2</th>
+                <td>Categoria taltal</td>
+                <td></td>
+                <td>
+                    <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                        <a role="button" class="btn btn-primary" asp-controller="Category" asp-action="UpdateCategory">Editar</a>
+                        <a role="button" class="btn btn-danger">Excluir</a>
+
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">3</th>
+                <td>Categoria talt</td>
+                <td> </td>
+                <td>
+                    <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                        <a role="button" class="btn btn-primary" asp-controller="Category" asp-action="UpdateCategory">Editar</a>
+                        <a role="button" class="btn btn-danger">Excluir</a>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div>
+
+        <a role="button" class="btn btn-success float-right" style="color:white" asp-controller="Category" asp-action="AddCategory"> Nova Categoria</a>
+
+    </div>
+
+
+</div>
