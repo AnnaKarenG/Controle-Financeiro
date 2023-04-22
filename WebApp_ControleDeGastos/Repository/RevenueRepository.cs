@@ -18,52 +18,54 @@ namespace WebApp_ControleDeGastos.Repository
             dbContext = sistemaFinanceiroDBContext;
         }
 
-        public async Task<List<Revenue>> Search()
+        public async Task<List<Revenue>> GetAllRevenue()
         {
             return await dbContext.Revenue.ToListAsync();
         }
 
-        public async Task<Revenue> SearchId(int id)
+        public async Task<Revenue> GetRevenueById(int id)
         {
             return await dbContext.Revenue.FirstOrDefaultAsync(x => x.RevenueId == id);
         }
 
-        public async Task<Revenue> Add(Revenue revenue)
+        public async Task<Revenue> AddRevenue(Revenue revenue)
         {
             dbContext.Revenue.Add(revenue);
-            dbContext.SaveChangesAsync();
+            await dbContext.SaveChangesAsync();
             return revenue;
         }
 
-        public async Task<Revenue> Update(Revenue revenue, int id)
+        public async Task<Revenue> UpdateRevenue(Revenue revenue)
         {
-            Revenue revenueid = await SearchId(id);
+            Revenue revenueId = await dbContext.Revenue.FirstOrDefaultAsync(x => x.RevenueId == revenue.RevenueId);
 
-            if (revenueid == null)
+            if (revenueId != null)
+            {
+                revenue.RevenueId = revenueId.RevenueId;
+                dbContext.Revenue.Update(revenue);
+                await dbContext.SaveChangesAsync();
+
+                return revenueId;
+            }
+            else
             {
                 throw new Exception($"Receita não encontra");
             }
-            revenueid.Value = revenue.Value;
-            revenueid.UserId = revenue.UserId;
-            revenueid.Date = revenue.Date;
-
-            dbContext.Revenue.Update(revenue);
-            await dbContext.SaveChangesAsync();
-
-            return revenueid;
         }
-        public async Task<bool> Delete(int id)
+        public async Task<bool> DeleteRevenue(int id)
         {
-            Revenue revenueid = await SearchId(id);
+            Revenue revenueid = await GetRevenueById(id);
 
             if (revenueid == null)
             {
                 throw new Exception($"Receita não encontrado");
             }
-
-            dbContext.Revenue.Remove(revenueid);
-            await dbContext.SaveChangesAsync();
-            return true;
+            else
+            {
+                dbContext.Revenue.Remove(revenueid);
+                await dbContext.SaveChangesAsync();
+                return true;
+            }
         }
     }
 }

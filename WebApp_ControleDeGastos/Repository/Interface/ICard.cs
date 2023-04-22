@@ -6,10 +6,10 @@ namespace WebApp_ControleDeGastos.Repository.Interface
 {
     public interface ICard
     {
-        Task<List<Card>> Search();
-        Task<Card> SearchId(int id);
-        Task<Card> Add(Card card);
-        Task<Card> Update(Card card, int id);
-        Task<bool> Delete(int id);
+        Task<List<Card>> GetAllCard();
+        Task<Card> GetCardById(int id);
+        Task<Card> AddCard(Card card);
+        Task<Card> UpdateCard(Card card);
+        Task<bool> DeleteCard(int id);
     }
 }

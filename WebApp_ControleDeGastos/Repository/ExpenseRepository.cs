@@ -18,58 +18,55 @@ namespace WebApp_ControleDeGastos.Repository
             dbContext = sistemaFinanceiroDBContext;
         }
 
-        public async Task<List<Expense>> Search()
+        public async Task<List<Expense>> GetAllExpense()
         {
             return await dbContext.Expense.ToListAsync();
         }
 
-        public async Task<Expense> SearchId(int id)
+        public async Task<Expense> GetExpenseById(int id)
         {
             return await dbContext.Expense.FirstOrDefaultAsync(x => x.ExpenseId == id);
         }
 
-        public async Task<Expense> Add(Expense expense)
+        public async Task<Expense> AddExpense(Expense expense)
         {
             dbContext.Expense.Add(expense);
-            dbContext.SaveChangesAsync();
+            await dbContext.SaveChangesAsync();
             return expense;
         }
 
-        public async Task<Expense> Update(Expense expense, int id)
+        public async Task<Expense> UpdateExpense(Expense expense)
         {
-            Expense expenseid = await SearchId(id);
+            Expense expenseId = await dbContext.Expense.FirstOrDefaultAsync(x => x.ExpenseId == expense.ExpenseId);
 
-            if (expenseid == null)
+            if (expenseId != null)
+            {
+                expense.ExpenseId = expenseId.ExpenseId;
+                dbContext.Expense.Update(expense);
+                await dbContext.SaveChangesAsync();
+
+                return expenseId;
+            }
+            else
             {
                 throw new Exception($"Despesa não encontra");
+
             }
-            expenseid.Value = expense.Value;
-            expenseid.Description = expense.Description;
-            expenseid.type = expense.type;
-            expenseid.NumberInstallments = expense.NumberInstallments;
-            expenseid.Status = expense.Status;
-            expenseid.NumberCard = expense.NumberCard;
-            expenseid.CategoryName = expense.CategoryName;
-            expenseid.Date = expense.Date;
-            expenseid.UserId = expense.UserId;
-
-            dbContext.Expense.Update(expense);
-            await dbContext.SaveChangesAsync();
-
-            return expenseid;
         }
-        public async Task<bool> Delete(int id)
+        public async Task<bool> DeleteExpense(int id)
         {
-            Expense expenseid = await SearchId(id);
+            Expense expenseid = await GetExpenseById(id);
 
             if (expenseid == null)
             {
                 throw new Exception($"Despesa não encontrado");
             }
-
-            dbContext.Expense.Remove(expenseid);
-            await dbContext.SaveChangesAsync();
-            return true;
+            else
+            {
+                dbContext.Expense.Remove(expenseid);
+                await dbContext.SaveChangesAsync();
+                return true;
+            }
         }
     }
 }

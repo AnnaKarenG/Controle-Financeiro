@@ -17,44 +17,43 @@ namespace WebApp_ControleDeGastos.Repository
             dbContext = sistemaFinanceiroDBContext;
         }
 
-        public async Task<List<User>> Search()
+        public async Task<List<User>> GetAllUser()
         {
             return await dbContext.User.ToListAsync();
         }
 
-        public async Task<User> SearchId(int id)
+        public async Task<User> GetUserById(int id)
         {
             return await dbContext.User.FirstOrDefaultAsync(x => x.UserId == id);
         }
 
-        public async Task<User> Add(User user)
+        public async Task<User> AddUser(User user)
         {
             dbContext.User.Add(user);
-            dbContext.SaveChangesAsync();
+            await dbContext.SaveChangesAsync();
             return user;
         }
 
-        public async Task<User> Update(User user, int id)
+        public async Task<User> UpdateUser(User user)
         {
-            User userid =  await SearchId(id);
+            User userId = await dbContext.User.FirstOrDefaultAsync(x => x.UserId == user.UserId);
 
-            if (userid == null)
+            if (userId != null)
+            {
+                user.UserId = userId.UserId;
+                dbContext.User.Update(userId);
+                await dbContext.SaveChangesAsync();
+                return userId;
+            }
+            else
             {
                 throw new Exception($"Usuário não encontrado");
             }
-                userid.Name = user.Name;
-                userid.Email = user.Email;
-                userid.Password = user.Password;
-                userid.Avatar = user.Avatar;
-
-            dbContext.User.Update(userid);
-            await dbContext.SaveChangesAsync();
-
-            return userid;
         }
-        public async Task<bool> Delete(int id)
+
+        public async Task<bool> DeleteUser(int id)
         {
-            User userid = await SearchId(id);
+            User userid = await GetUserById(id);
 
             if (userid == null)
             {

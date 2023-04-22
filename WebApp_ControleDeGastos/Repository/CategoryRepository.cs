@@ -59,12 +59,12 @@ namespace WebApp_ControleDeGastos.Repository
 
         public async Task<Category> GetCategoryById(int id)
         {
-            return await dbContext.Category.FirstOrDefaultAsync(x => x.Id == id);
+            return await dbContext.Category.FirstOrDefaultAsync(x => x.CategoryId == id);
         }
 
         public async Task<Category> UpdateCategory(Category category)
         {
-            Category categoryId = await dbContext.Set<Category>().FirstOrDefaultAsync(c => c.Id == category.Id);
+            Category categoryId = await dbContext.Set<Category>().FirstOrDefaultAsync(c => c.CategoryId == category.CategoryId);
 
             if (categoryId != null)
             {

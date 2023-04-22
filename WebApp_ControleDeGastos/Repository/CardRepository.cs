@@ -5,6 +5,8 @@ using WebApp_ControleDeGastos.Database;
 using WebApp_ControleDeGastos.Models;
 using Microsoft.EntityFrameworkCore;
 using WebApp_ControleDeGastos.Repository.Interface;
+using System.Linq;
+using System.Xml.Linq;
 
 namespace WebApp_ControleDeGastos.Repository
 {
@@ -17,57 +19,55 @@ namespace WebApp_ControleDeGastos.Repository
             dbContext = sistemaFinanceiroDBContext;
         }
 
-        public async Task<List<Card>> Search()
+        public async Task<List<Card>> GetAllCard()
         {
             return await dbContext.Card.ToListAsync();
         }
 
-        public async Task<Card> SearchId(int id)
+        public async Task<Card> GetCardById(int id)
         {
             return await dbContext.Card.FirstOrDefaultAsync(x => x.CardId == id);
         }
 
-        public async Task<Card> Add(Card card)
+        public async Task<Card> AddCard(Card card)
         {
             dbContext.Card.Add(card);
-            dbContext.SaveChangesAsync();
+            await dbContext.SaveChangesAsync();
             return card;
         }
 
-        public async Task<Card> Update(Card card, int id)
+        public async Task<Card> UpdateCard(Card card)
         {
-            Card cardid = await SearchId(id);
+            Card cardId = await dbContext.Card.FirstOrDefaultAsync(x => x.CardId == card.CardId);
 
-            if (cardid == null)
+            if (cardId != null)
+            {     
+                card.CardId = cardId.CardId;
+                dbContext.Card.Update(cardId);
+                await dbContext.SaveChangesAsync();
+
+                return cardId;
+            }
+            else
             {
                 throw new Exception($"Cartão não encontrado");
             }
-            cardid.NumberCard = card.NumberCard;
-            cardid.type = card.type;
-            cardid.Balance = card.Balance;
-            cardid.Limite = card.Limite;
-            cardid.InvoiceAmount = card.InvoiceAmount;
-            cardid.InvoiceDate = card.InvoiceDate;
-            cardid.Flag = card.Flag;
-            cardid.UserId = card.UserId;
-
-            dbContext.Card.Update(cardid);
-            await dbContext.SaveChangesAsync();
-
-            return cardid;
         }
-        public async Task<bool> Delete(int id)
-        {
-            Card cardid = await SearchId(id);
 
-            if (cardid == null)
+        public async Task<bool> DeleteCard(int id)
+        {
+            Card cardId = await GetCardById(id);
+
+            if (cardId == null)
             {
                 throw new Exception($"Cartão não encontrado");
             }
-
-            dbContext.Card.Remove(cardid);
-            await dbContext.SaveChangesAsync();
-            return true;
+            else
+            {
+                dbContext.Card.Remove(cardId);
+                await dbContext.SaveChangesAsync();
+                return true;
+            }
         }
     }
 }

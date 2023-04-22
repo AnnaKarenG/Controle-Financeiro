@@ -6,10 +6,10 @@ namespace WebApp_ControleDeGastos.Repository.Interface
 {
     public interface IUser
     {
-        Task<List<User>> Search();
-        Task<User> SearchId(int id);
-        Task<User> Add(User user);
-        Task<User> Update(User user, int id);
-        Task<bool> Delete(int id);
+        Task<List<User>> GetAllUser();
+        Task<User> GetUserById(int id);
+        Task<User> AddUser(User user);
+        Task<User> UpdateUser(User user);
+        Task<bool> DeleteUser(int id);
     }
 }
