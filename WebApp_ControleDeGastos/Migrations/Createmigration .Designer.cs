@@ -8,7 +8,7 @@ using WebApp_ControleDeGastos.Database;
 
 namespace WebApp_ControleDeGastos.Migrations
 {
-    [DbContext(typeof(UserDBContext))]
+    [DbContext(typeof(SistemaFinanceiroDBContext))]
     [Migration("20230408175207_Createmigration")]
     partial class Createmigration
     {

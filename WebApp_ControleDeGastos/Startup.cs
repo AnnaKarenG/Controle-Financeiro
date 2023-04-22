@@ -22,7 +22,7 @@ namespace WebApp_ControleDeGastos
         {
             services.AddControllersWithViews();
 
-            services.AddDbContext<UserDBContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DataBase")));
+            services.AddDbContext<SistemaFinanceiroDBContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DataBase")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

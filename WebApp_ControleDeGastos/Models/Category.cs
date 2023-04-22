@@ -1,8 +1,16 @@
-﻿namespace WebApp_ControleDeGastos.Models
+﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace WebApp_ControleDeGastos.Models
 {
     public class Category
     {
-        public int Id { get; set; }
+        [Key]
+        public int CategoryId { get; set; }
+
+        [Column(TypeName = "VARCHAR(60)")]
+        [Required]
         public string CategoryName { get; set; }
     }
 }

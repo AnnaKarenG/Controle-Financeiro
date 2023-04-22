@@ -10,11 +10,11 @@ namespace WebApp_ControleDeGastos.Repository
 {
     public class UserRepository : IUser
     {
-        private readonly UserDBContext dbContext;
-        public UserRepository(UserDBContext userDBContext)
+        private readonly SistemaFinanceiroDBContext dbContext;
+        public UserRepository(SistemaFinanceiroDBContext sistemaFinanceiroDBContext)
         {
 
-            dbContext = userDBContext;
+            dbContext = sistemaFinanceiroDBContext;
         }
 
         public async Task<List<User>> Search()
@@ -24,7 +24,7 @@ namespace WebApp_ControleDeGastos.Repository
 
         public async Task<User> SearchId(int id)
         {
-            return await dbContext.User.FirstOrDefaultAsync(x => x.Id == id);
+            return await dbContext.User.FirstOrDefaultAsync(x => x.UserId == id);
         }
 
         public async Task<User> Add(User user)
