@@ -6,8 +6,8 @@ namespace WebApp_ControleDeGastos.Repository.Interface
 {
     public interface ICategory
     {
-        Task<List<Category>> GetAllCategory();
-        Task<Category> GetCategoryById(int id);
+        List<Category> GetAllCategory();
+        Category GetCategoryById(int id);
         Task<Category> AddCategory(Category category);
         Task<Category> UpdateCategory(Category category);
         Task<bool> DeleteCategory(int id);

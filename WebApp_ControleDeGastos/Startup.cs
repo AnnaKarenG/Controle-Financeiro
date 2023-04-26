@@ -5,6 +5,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using WebApp_ControleDeGastos.Database;
+using WebApp_ControleDeGastos.Repository;
+using WebApp_ControleDeGastos.Repository.Interface;
 
 namespace WebApp_ControleDeGastos
 {
@@ -23,6 +25,9 @@ namespace WebApp_ControleDeGastos
             services.AddControllersWithViews();
 
             services.AddDbContext<SistemaFinanceiroDBContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DataBase")));
+
+            //sempre a interface for invocada, a injesão de dependencia irá usar tudo que está presente na CategoryRepository 
+            services.AddScoped<ICategory, CategoryRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

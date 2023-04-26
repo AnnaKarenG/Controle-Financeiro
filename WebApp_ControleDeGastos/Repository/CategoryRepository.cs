@@ -11,15 +11,23 @@ namespace WebApp_ControleDeGastos.Repository
 {
     public class CategoryRepository : ICategory
     {
-        private readonly CategoryDBContext dbContext;
-        public CategoryRepository(CategoryDBContext categoryDBContext)
+        private readonly SistemaFinanceiroDBContext dbContext;
+        public CategoryRepository(SistemaFinanceiroDBContext sistemaFinanceiroDBContext)
         {
-            dbContext = categoryDBContext;
+
+            dbContext = sistemaFinanceiroDBContext;
         }
 
         public async Task<Category> AddCategory(Category category)
         {
-            string categoryName = category.CategoryName;
+
+            dbContext.Category.Add(category);
+            await dbContext.SaveChangesAsync();
+            return category;
+
+            //Add verificação posteriormente
+
+            /*string categoryName = category.CategoryName;
             // já existe uma categoria com esse nome
             var foundCategory = await GetCategoryByName(categoryName);
 
@@ -30,16 +38,16 @@ namespace WebApp_ControleDeGastos.Repository
             dbContext.Category.Add(category);
             await dbContext.SaveChangesAsync();
 
-            return category;
+            return category;*/
         }
 
         public async Task<bool> DeleteCategory(int id)
         {
-            Category categoryId = await GetCategoryById(id);
+            Category categoryId =  GetCategoryById(id);
 
             if (categoryId == null)
             {
-                throw new Exception($"Categoria não encontrada");
+                throw new System.Exception("Categoria não encontrada");
             }
 
             dbContext.Category.Remove(categoryId);
@@ -47,9 +55,9 @@ namespace WebApp_ControleDeGastos.Repository
             return true;
         }
 
-        public async Task<List<Category>> GetAllCategory()
+        public List<Category> GetAllCategory()
         {
-            return await dbContext.Category.ToListAsync();
+            return dbContext.Category.ToList();
         }
 
         public async Task<List<Category>> GetCategoryByName(string name)
@@ -57,28 +65,30 @@ namespace WebApp_ControleDeGastos.Repository
             return await dbContext.Set<Category>().Where(c => c.CategoryName.Contains(name)).ToListAsync();
         }
 
-        public async Task<Category> GetCategoryById(int id)
+        public Category GetCategoryById(int id)
         {
-            return await dbContext.Category.FirstOrDefaultAsync(x => x.CategoryId == id);
+            return  dbContext.Category.FirstOrDefault(x => x.CategoryId == id);
         }
 
         public async Task<Category> UpdateCategory(Category category)
         {
-            Category categoryId = await dbContext.Set<Category>().FirstOrDefaultAsync(c => c.CategoryId == category.CategoryId);
+            Category categoryBD = GetCategoryById(category.CategoryId);
 
-            if (categoryId != null)
+            if (categoryBD != null)
             {
-                category.CategoryName = categoryId.CategoryName;
-                dbContext.Category.Update(category);
+                categoryBD.CategoryName = category.CategoryName;
+                dbContext.Category.Update(categoryBD);
                 await dbContext.SaveChangesAsync();
 
             }
             else
             {
-                throw new Exception($"Categoria não encontrada");
+                throw new System.Exception("Categoria não encontrada");
             }
 
-            return categoryId;
+            return categoryBD;
         }
+
+  
     }
 }

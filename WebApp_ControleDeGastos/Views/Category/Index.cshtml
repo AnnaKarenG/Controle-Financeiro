@@ -1,4 +1,5 @@
-﻿@{
+﻿@model List<Category> 
+@{
     ViewData["Title"] = "Lista de Categorias";
 }
 <h2>Categorias</h2>
@@ -13,40 +14,25 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td>Categoria tal</td>
-                <td></td>
-                <td>
-                    <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-                        <a role="button" class="btn btn-primary" asp-controller="Category" asp-action="UpdateCategory">Editar</a>
-                        <a role="button" class="btn btn-danger">Excluir</a>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row">2</th>
-                <td>Categoria taltal</td>
-                <td></td>
-                <td>
-                    <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-                        <a role="button" class="btn btn-primary" asp-controller="Category" asp-action="UpdateCategory">Editar</a>
-                        <a role="button" class="btn btn-danger">Excluir</a>
+            @if(Model != null && Model.Any())
+            {
+                @foreach( Category categoria in Model)
+                {
+                    <tr>
+                        <th scope="row">@categoria.CategoryId</th>
+                        <td>@categoria.CategoryName</td>
+                        <td></td>
+                        <td>
+                            <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                                <a role="button" class="btn btn-primary" asp-route-id="@categoria.CategoryId" asp-controller="Category" asp-action="UpdateCategory">Editar</a>
+                                <a role="button" class="btn btn-danger" asp-route-id="@categoria.CategoryId" asp-controller="Category" asp-action="DeleteCategory" >Excluir</a>
+                            </div>
+                        </td>
+                    </tr>
 
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row">3</th>
-                <td>Categoria talt</td>
-                <td> </td>
-                <td>
-                    <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-                        <a role="button" class="btn btn-primary" asp-controller="Category" asp-action="UpdateCategory">Editar</a>
-                        <a role="button" class="btn btn-danger">Excluir</a>
-                    </div>
-                </td>
-            </tr>
+                }
+
+            }
         </tbody>
     </table>
 
