@@ -28,6 +28,10 @@ namespace WebApp_ControleDeGastos
 
             //sempre a interface for invocada, a injesão de dependencia irá usar tudo que está presente na CategoryRepository 
             services.AddScoped<ICategory, CategoryRepository>();
+            services.AddScoped<ICard, CardRepository>();
+            services.AddScoped<IExpense, ExpenseRepository>();
+            services.AddScoped<IUser, UserRepository>();
+            services.AddScoped<IRevenue, RevenueRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
