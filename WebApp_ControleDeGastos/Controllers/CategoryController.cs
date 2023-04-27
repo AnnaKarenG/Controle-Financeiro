@@ -45,8 +45,13 @@ namespace WebApp_ControleDeGastos.Controllers
             }
 
 
-        [HttpPost]
             public IActionResult AddCategory(Models.Category category)
+            {
+                 return View();
+
+             }
+
+        public IActionResult ToAddCategory(Models.Category category)
             {
                 _category.AddCategory(category);
                 return RedirectToAction("Index");
