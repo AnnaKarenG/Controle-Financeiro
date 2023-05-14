@@ -18,13 +18,13 @@
             </div>
 
             <div class="form-floating">
-                <form class="needs-validation" novalidate="" style="margin-left: 20%; margin-right: 20%;">
+                <form class="needs-validation" novalidate="" style="margin-left: 20%; margin-right: 20%;" method="post" action="https://localhost:44313/User/ToAddUser">
                     <div class="row g-3">
 
                         <div class="col-12">
                             <label for="username" class="form-label">Nome</label>
                             <div class="input-group has-validation">
-                                <input type="text" class="form-control" id="username" required="">
+                                <input type="text" class="form-control" id="username" required="" name="Name">
                                 <div class="invalid-feedback">
                                     Nome é obrigatório.
                                 </div>
@@ -33,7 +33,7 @@
 
                         <div class="col-12">
                             <label for="email" class="form-label">Email <span class="text-body-secondary"></span></label>
-                            <input type="email" class="form-control" id="email" placeholder="email@example.com">
+                            <input type="email" class="form-control" id="email" placeholder="email@example.com" name="Email">
                             <div class="invalid-feedback">
                                 Insira um endereço de e-mail válido para atualizações de envio.
                             </div>
@@ -41,7 +41,7 @@
 
                         <div class="col-12">
                             <label for="password" class="form-label">Senha</label>
-                            <input type="password" class="form-control" id="password">
+                            <input type="password" class="form-control" id="password" name="Password">
                             <div class="invalid-feedback">
                                 Insira uma senha.
                             </div>
@@ -49,14 +49,14 @@
 
                         <div class="input-group mb-3">
                             <label class="input-group-text" for="inputGroupFile01">Avatar</label>
-                            <input type="file" class="form-control" id="inputGroupFile01">
+                            <input type="file" class="form-control" id="inputGroupFile01" name="Avatar">
                         </div>
 
 
                     </div>
 
                     <hr class="my-4">
-                    <button class="w-100 btn btn-primary btn-lg" id="liveAlertBtn">Concluir</button>
+                    <button class="w-100 btn btn-primary btn-lg" id="liveAlertBtn" type="submit">Concluir</button>
                 </form>
 
             </div>

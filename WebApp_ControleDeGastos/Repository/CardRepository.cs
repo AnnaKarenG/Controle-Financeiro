@@ -41,8 +41,15 @@ namespace WebApp_ControleDeGastos.Repository
             Card cardId = await dbContext.Card.FirstOrDefaultAsync(x => x.CardId == card.CardId);
 
             if (cardId != null)
-            {     
-                card.CardId = cardId.CardId;
+            {
+                cardId.NumberCard = card.NumberCard;
+                cardId.type = card.type;
+                cardId.Balance = card.Balance;
+                cardId.Limite = card.Limite;
+                cardId.InvoiceAmount = card.InvoiceAmount;
+                cardId.InvoiceDate = card.InvoiceDate;
+                cardId.Flag = card.Flag;
+                cardId.UserId = card.UserId;
                 dbContext.Card.Update(cardId);
                 await dbContext.SaveChangesAsync();
 

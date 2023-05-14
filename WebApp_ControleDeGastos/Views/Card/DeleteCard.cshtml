@@ -1,0 +1,30 @@
+﻿@model Card
+@{
+    ViewData["Title"] = "Exclusão de Cartão";
+}
+
+<div class="text-center">
+    <h3>Excluir o cartão (@Model.NumberCard) </h3>
+</div>
+
+
+<div class="text-center" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Dejesa realmente excluir o cartão?</h5>
+            </div>
+            <div>
+               <br />
+                <form asp-controller="Card" asp-action="DeleteRecordCard" method="post">
+                    <input type="hidden" asp-for="@Model.CardId" name="id"/>
+
+                    <button class="btn btn-danger"  type="submit">Excluir</button>
+                    <a role="button" class="btn btn-secondary" asp-controller="Card" asp-action="Index">Voltar</a>
+
+                </form>
+                <br />
+            </div>
+        </div>
+    </div>
+</div>

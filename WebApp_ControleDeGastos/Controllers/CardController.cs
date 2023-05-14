@@ -34,6 +34,7 @@ namespace WebApp_ControleDeGastos.Controllers
             return View(card);
         }
 
+        [HttpPost]
         public async Task<IActionResult> DeleteRecordCard(int id)
         {
             await _card.DeleteCard(id);
@@ -41,12 +42,17 @@ namespace WebApp_ControleDeGastos.Controllers
             return RedirectToAction("Index");
         }
 
-
         [HttpPost]
+        public async Task<IActionResult> ToAddCard(Card card)
+        {
+             await _card.AddCard(card);
+            return RedirectToAction("Index");
+
+        }
+       
         public async Task<IActionResult> AddCard(Card card)
         {
-            await _card.AddCard(card);
-            return RedirectToAction("Index");
+            return View();
         }
 
 

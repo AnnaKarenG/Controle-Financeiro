@@ -23,6 +23,35 @@ namespace WebApp_ControleDeGastos.Controllers
 
         }
 
+        public async Task<IActionResult> LoginUser()
+        {
+            return View("Login");
+
+        }
+
+        public async Task<IActionResult> ContaUser(User user)
+        {
+
+            return View("ContaUser", user);
+
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Login(User user)
+        {
+            List<User> users = await _user.GetAllUser();
+
+            foreach (User item in users)
+            {
+                if (item.Email == user.Email && item.Password == user.Password)
+                {
+                    return RedirectToAction("ContaUser", item);
+                }
+            }
+
+            return BadRequest();
+
+        }
 
         public async Task<IActionResult> UpdateUser(int id)
         {
@@ -45,12 +74,17 @@ namespace WebApp_ControleDeGastos.Controllers
             return RedirectToAction("Index");
         }
 
+        public async Task<IActionResult> AddUser()
+        {
+            return View("AddUser");
+
+        }
 
         [HttpPost]
-        public async Task<IActionResult> AddUser(User user)
-        {
+        public async Task<IActionResult> ToAddUser(User user)
+            {
             await _user.AddUser(user);
-            return RedirectToAction("Index");
+            return RedirectToAction("LoginUser");
 
         }
 

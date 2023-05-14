@@ -1,0 +1,60 @@
+﻿@model List<Card> 
+@{
+    ViewData["Title"] = "Lista de cartões";
+}
+<h2>Cartões</h2>
+<div class="text-center">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Identificador</th>
+                <th scope="col">Número</th>
+                <th scope="col">Tipo</th>
+                <th scope="col">Valor em conta corrente</th>
+                <th scope="col">Limite</th>
+                <th scope="col">Valor da Fatura</th>
+                <th scope="col">Data da Fatura</th>
+                <th scope="col">Bandeira</th>
+                <th scope="col">Usuário</th>
+                <th scope="col"></th>
+                <th scope="col">Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if(Model != null && Model.Any())
+            {
+                @foreach( Card card in Model)
+                {
+                    <tr>
+                        <th scope="row">@card.CardId</th>
+                        <td>@card.NumberCard</td>
+                        <td>@card.type</td>
+                        <td>@card.Balance</td>
+                        <td>@card.Limite</td>
+                        <td>@card.InvoiceAmount</td>
+                        <td>@card.InvoiceDate</td>
+                        <td>@card.Flag</td>
+                        <td>@card.UserId</td>
+                        <td></td>
+                        <td>
+                            <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                                <a role="button" class="btn btn-primary" asp-route-id="@card.CardId" asp-controller="Card" asp-action="UpdateCard">Editar</a>
+                                <a role="button" class="btn btn-danger" asp-route-id="@card.CardId" asp-controller="Card" asp-action="DeleteCard" >Excluir</a>
+                            </div>
+                        </td>
+                    </tr>
+
+                }
+
+            }
+        </tbody>
+    </table>
+
+    <div>
+
+        <a role="button" class="btn btn-success float-right" style="color:white" asp-controller="Card" asp-action="AddCard"> Novo Cartão</a>
+
+    </div>
+
+
+</div>
