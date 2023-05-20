@@ -53,14 +53,14 @@ namespace WebApp_ControleDeGastos.Controllers
 
         }
 
-        public async Task<IActionResult> UpdateUser(int id)
+        public async Task<IActionResult> UpdateUser(long id)
         {
 
             User user = await _user.GetUserById(id);
             return View(user);
         }
 
-        public async Task<IActionResult> DeleteUser(int id)
+        public async Task<IActionResult> DeleteUser(long id)
         {
 
             User user = await _user.GetUserById(id);

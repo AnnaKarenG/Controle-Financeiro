@@ -6,7 +6,7 @@ namespace WebApp_ControleDeGastos.Models
     public class User
     {
         [Key]
-        public int UserId { get; set; }
+        public long UserId { get; set; }
 
         [Column(TypeName = "VARCHAR(60)")]
         [Required]

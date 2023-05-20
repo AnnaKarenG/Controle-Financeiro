@@ -34,7 +34,7 @@ namespace WebApp_ControleDeGastos.Repository
                     while (reader.Read())
                     {
                         Category category = new Category();
-                        category.CategoryId = (int)reader["CategoryId"];
+                        category.CategoryId = (int)(long)reader["CategoryId"];
                         category.CategoryName = (string)reader["CategoryName"];
 
                         categories.Add(category);
@@ -45,7 +45,7 @@ namespace WebApp_ControleDeGastos.Repository
             }
         }
 
-        public Category GetCategoryById(int id)
+        public Category GetCategoryById(long id)
         {
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
@@ -63,7 +63,7 @@ namespace WebApp_ControleDeGastos.Repository
                     if (reader.Read())
                     {
                         category = new Category();
-                        category.CategoryId = (int)reader["CategoryId"];
+                        category.CategoryId = (int)(long)reader["CategoryId"];
                         category.CategoryName = (string)reader["CategoryName"];
                     }
                 }
@@ -109,7 +109,7 @@ namespace WebApp_ControleDeGastos.Repository
             }
         }
 
-        public async Task<bool> DeleteCategory(int id)
+        public async Task<bool> DeleteCategory(long id)
         {
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {

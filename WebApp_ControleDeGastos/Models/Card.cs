@@ -9,11 +9,11 @@ namespace WebApp_ControleDeGastos.Models
     public class Card
     {
         [Key]
-        public int CardId { get; set; }
+        public long CardId { get; set; }
 
         [Column(TypeName = "INT")]
         [Required]
-        public int NumberCard { get; set; }
+        public long NumberCard { get; set; }
 
         [Column(TypeName = "TINYINT")]
         [Required]
@@ -39,6 +39,6 @@ namespace WebApp_ControleDeGastos.Models
 
         [Column(TypeName = "BIGINT")]
         [Required]
-        public int UserId { get; set;}
+        public string Nome { get; set;}
     }
 }

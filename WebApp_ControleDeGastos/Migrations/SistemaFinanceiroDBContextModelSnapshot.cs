@@ -23,7 +23,7 @@ namespace WebApp_ControleDeGastos.Migrations
                 {
                     b.Property<int>("CardId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
+                        .HasColumnType("BIGINT")
                         .UseIdentityColumn();
 
                     b.Property<decimal>("Balance")
@@ -45,7 +45,7 @@ namespace WebApp_ControleDeGastos.Migrations
                     b.Property<int>("NumberCard")
                         .HasColumnType("INT");
 
-                    b.Property<long>("UserId")
+                    b.Property<long>("Nome")
                         .HasColumnType("BIGINT");
 
                     b.Property<byte>("type")
@@ -60,7 +60,7 @@ namespace WebApp_ControleDeGastos.Migrations
                 {
                     b.Property<int>("CategoryId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
+                        .HasColumnType("BIGINT")
                         .UseIdentityColumn();
 
                     b.Property<string>("CategoryName")
@@ -76,7 +76,7 @@ namespace WebApp_ControleDeGastos.Migrations
                 {
                     b.Property<int>("ExpenseId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
+                        .HasColumnType("BIGINT")
                         .UseIdentityColumn();
 
                     b.Property<string>("CategoryName")
@@ -117,7 +117,7 @@ namespace WebApp_ControleDeGastos.Migrations
                 {
                     b.Property<int>("RevenueId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
+                        .HasColumnType("BIGINT")
                         .UseIdentityColumn();
 
                     b.Property<DateTime>("Date")
@@ -138,7 +138,7 @@ namespace WebApp_ControleDeGastos.Migrations
                 {
                     b.Property<int>("UserId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
+                        .HasColumnType("BIGINT")
                         .UseIdentityColumn();
 
                     b.Property<string>("Avatar")

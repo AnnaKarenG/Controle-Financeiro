@@ -22,7 +22,7 @@ namespace WebApp_ControleDeGastos.Repository
             return await dbContext.User.ToListAsync();
         }
 
-        public async Task<User> GetUserById(int id)
+        public async Task<User> GetUserById(long id)
         {
             return await dbContext.User.FirstOrDefaultAsync(x => x.UserId == id);
         }
@@ -51,7 +51,7 @@ namespace WebApp_ControleDeGastos.Repository
             }
         }
 
-        public async Task<bool> DeleteUser(int id)
+        public async Task<bool> DeleteUser(long id)
         {
             User userid = await GetUserById(id);
 

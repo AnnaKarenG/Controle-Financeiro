@@ -23,21 +23,21 @@ namespace WebApp_ControleDeGastos.Controllers
             }
 
  
-            public IActionResult UpdateCategory(int id)
+            public IActionResult UpdateCategory(long id)
             {        //método que chama a tela de edição mostrando os dados
 
                 Category category = _category.GetCategoryById(id);
                 return View(category);
             }
 
-            public IActionResult DeleteCategory(int id)
+            public IActionResult DeleteCategory(long id)
             {    //método que chama a tela de deleção mostrando qual é a categoria
 
                 Category category = _category.GetCategoryById(id);
                 return View(category);
             }
 
-            public IActionResult DeleteRecordCategory(int id)
+            public IActionResult DeleteRecordCategory(long id)
             {
                   _category.DeleteCategory(id);
 

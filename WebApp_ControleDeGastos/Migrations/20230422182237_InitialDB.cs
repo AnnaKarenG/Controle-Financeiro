@@ -11,7 +11,7 @@ namespace WebApp_ControleDeGastos.Migrations
                 name: "Card",
                 columns: table => new
                 {
-                    CardId = table.Column<int>(type: "int", nullable: false)
+                    CardId = table.Column<int>(type: "BIGINT", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     NumberCard = table.Column<int>(type: "INT", nullable: false),
                     type = table.Column<byte>(type: "TINYINT", nullable: false),
@@ -20,7 +20,7 @@ namespace WebApp_ControleDeGastos.Migrations
                     InvoiceAmount = table.Column<decimal>(type: "DECIMAL(15,2)", nullable: false),
                     InvoiceDate = table.Column<DateTime>(type: "DATETIME", nullable: true),
                     Flag = table.Column<string>(type: "VARCHAR(30)", nullable: false),
-                    UserId = table.Column<long>(type: "BIGINT", nullable: false)
+                    Nome = table.Column<string>(type: "VARCHAR(30)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -31,7 +31,7 @@ namespace WebApp_ControleDeGastos.Migrations
                 name: "Category",
                 columns: table => new
                 {
-                    CategoryId = table.Column<int>(type: "int", nullable: false)
+                    CategoryId = table.Column<int>(type: "BIGINT", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CategoryName = table.Column<string>(type: "VARCHAR(60)", nullable: false)
                 },
@@ -44,7 +44,7 @@ namespace WebApp_ControleDeGastos.Migrations
                 name: "Expense",
                 columns: table => new
                 {
-                    ExpenseId = table.Column<int>(type: "int", nullable: false)
+                    ExpenseId = table.Column<int>(type: "BIGINT", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Value = table.Column<decimal>(type: "DECIMAL(15,2)", nullable: false),
                     Description = table.Column<string>(type: "VARCHAR(60)", nullable: true),
@@ -65,7 +65,7 @@ namespace WebApp_ControleDeGastos.Migrations
                 name: "Revenue",
                 columns: table => new
                 {
-                    RevenueId = table.Column<int>(type: "int", nullable: false)
+                    RevenueId = table.Column<int>(type: "BIGINT", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Value = table.Column<decimal>(type: "DECIMAL(15,2)", nullable: false),
                     UserId = table.Column<long>(type: "BIGINT", nullable: false),
@@ -80,7 +80,7 @@ namespace WebApp_ControleDeGastos.Migrations
                 name: "User",
                 columns: table => new
                 {
-                    UserId = table.Column<int>(type: "int", nullable: false)
+                    UserId = table.Column<int>(type: "BIGINT", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "VARCHAR(60)", nullable: false),
                     Email = table.Column<string>(type: "VARCHAR(60)", nullable: false),

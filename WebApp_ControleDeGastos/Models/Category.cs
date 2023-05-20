@@ -7,7 +7,7 @@ namespace WebApp_ControleDeGastos.Models
     public class Category
     {
         [Key]
-        public int CategoryId { get; set; }
+        public long CategoryId { get; set; }
 
         [Column(TypeName = "VARCHAR(60)")]
         [Required]

@@ -15,27 +15,27 @@ namespace WebApp_ControleDeGastos.Controllers
             _card = card;
         }
 
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            List<Card> card = await _card.GetAllCard();
+            List<Card> card = _card.GetAllCard();
             return View(card);
 
         }
 
-        public async Task<IActionResult> UpdateCard(int id)
+        public async Task<IActionResult> UpdateCard(long id)
         {       
-            Card card = await _card.GetCardById(id);
+            Card card = _card.GetCardById(id);
             return View(card);
         }
 
-        public async Task<IActionResult> DeleteCard(int id)
+        public async Task<IActionResult> DeleteCard(long id)
         {   
-            Card card = await _card.GetCardById(id);
+            Card card = _card.GetCardById(id);
             return View(card);
         }
 
         [HttpPost]
-        public async Task<IActionResult> DeleteRecordCard(int id)
+        public async Task<IActionResult> DeleteRecordCard(long id)
         {
             await _card.DeleteCard(id);
 
