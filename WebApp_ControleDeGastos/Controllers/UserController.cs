@@ -16,9 +16,9 @@ namespace WebApp_ControleDeGastos.Controllers
             _user = user;
         }
 
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            List<User> user = await _user.GetAllUser();
+            List<User> user = _user.GetAllUser();
             return View(user);
 
         }
@@ -39,7 +39,7 @@ namespace WebApp_ControleDeGastos.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(User user)
         {
-            List<User> users = await _user.GetAllUser();
+            List<User> users = _user.GetAllUser();
 
             foreach (User item in users)
             {
@@ -56,14 +56,14 @@ namespace WebApp_ControleDeGastos.Controllers
         public async Task<IActionResult> UpdateUser(long id)
         {
 
-            User user = await _user.GetUserById(id);
+            User user = _user.GetUserById(id);
             return View(user);
         }
 
         public async Task<IActionResult> DeleteUser(long id)
         {
 
-            User user = await _user.GetUserById(id);
+            User user = _user.GetUserById(id);
             return View(user);
         }
 
@@ -82,7 +82,7 @@ namespace WebApp_ControleDeGastos.Controllers
 
         [HttpPost]
         public async Task<IActionResult> ToAddUser(User user)
-            {
+        {
             await _user.AddUser(user);
             return RedirectToAction("LoginUser");
 
