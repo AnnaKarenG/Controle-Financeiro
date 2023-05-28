@@ -26,19 +26,19 @@
                 </a>
 
                 <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
-                    <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="#">Receita</a>
-                    <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="#">Despesa</a>
-                    <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="#">Categoria</a>
-                    <a class="py-2 link-body-emphasis text-decoration-none" href="#">Cartão</a>
+                    <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="/revenue">Receita</a>
+                    <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="/expense">Despesa</a>
+                    <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="/category">Categoria</a>
+                    <a class="py-2 link-body-emphasis text-decoration-none" href="/card">Cartão</a>
 
                     <a class="me-3 py-2 link-body-emphasis text-decoration-none dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" style="margin-left: 35px;">
                         @Model.Name
                     </a>
 
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Ver conta</a></li>
+                        <li><a class="dropdown-item" href="/user/contaview?id=@Model.UserId">Ver conta</a></li>
                         <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="index.html">Sair</a></li>
+                        <li><a class="dropdown-item" href="/Home">Sair</a></li>
                     </ul>
 
                 </nav>
@@ -61,7 +61,7 @@
                             <ul class="list-unstyled mt-3 mb-4">
                                 <li>Gerencie com precisão todas as despesas dos seus cartões de crédito. Tenha controle do cartão titular e dos adicionais.</li>
                             </ul>
-                            <button type="button" class="w-100 btn btn-lg btn-outline-primary">Despesas</button>
+                            <a role="button" class="w-100 btn btn-lg btn-outline-primary" asp-controller="Expense" asp-action="Index">Despesas</a>
                         </div>
                     </div>
                 </div>
@@ -75,7 +75,7 @@
                                 <li>Segurança dos seus dados em primeiro lugar</li>
                                 <li>Acesse quando quiser, no celular ou computador</li>
                             </ul>
-                            <button type="button" class="w-100 btn btn-lg btn-outline-primary">Cartões</button>
+                             <a role="button" class="w-100 btn btn-lg btn-outline-primary" asp-controller="Card" asp-action="Index">Cartões</a>
                         </div>
                     </div>
                 </div>
@@ -89,7 +89,7 @@
                                 <li>Organize seu dinheiro em tempo real em uma solução completa, prática e segura</li>
                                 <li>garanta o controle total das suas finanças</li>
                             </ul>
-                            <button type="button" class="w-100 btn btn-lg btn-outline-primary">Receitas</button>
+                            <a role="button" class="w-100 btn btn-lg btn-outline-primary" asp-controller="Revenue" asp-action="Index">Receitas</a>
                         </div>
                     </div>
                 </div>

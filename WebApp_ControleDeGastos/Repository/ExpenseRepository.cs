@@ -41,8 +41,16 @@ namespace WebApp_ControleDeGastos.Repository
 
             if (expenseId != null)
             {
-                expense.ExpenseId = expenseId.ExpenseId;
-                dbContext.Expense.Update(expense);
+                expenseId.Value = expense.Value;
+                expenseId.Description = expense.Description;
+                expenseId.type = expense.type;
+                expenseId.NumberInstallments = expense.NumberInstallments;
+                expenseId.Status = expense.Status;
+                expenseId.NumberCard = expense.NumberCard;
+                expenseId.Date = expense.Date;
+                expenseId.CategoryName = expense.CategoryName;
+                expenseId.UserId = expense.UserId;
+                dbContext.Expense.Update(expenseId);
                 await dbContext.SaveChangesAsync();
 
                 return expenseId;
@@ -70,26 +78,3 @@ namespace WebApp_ControleDeGastos.Repository
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

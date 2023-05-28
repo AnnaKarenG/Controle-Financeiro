@@ -37,7 +37,7 @@ namespace WebApp_ControleDeGastos.Models
         [Required]
         public string Flag { get; set;}
 
-        [Column(TypeName = "BIGINT")]
+        [Column(TypeName = "VARCHAR(30)")]
         [Required]
         public string Nome { get; set;}
     }

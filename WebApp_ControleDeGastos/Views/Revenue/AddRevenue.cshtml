@@ -1,0 +1,33 @@
+﻿@model Revenue
+
+@{
+   ViewData["Title"] = "Adicionar Receita";
+} 
+
+<div class="text-center">
+    <h3>Adicionar Receita</h3>
+</div>
+
+<form  method="post" action="https://localhost:44313/Revenue/ToAddRevenue">
+
+    <div class="form-group">
+        <label for="valor da receita">Valor da Receita</label>
+
+        <input type="text" asp-for="Value" class="form-control" placeholder="digite o valor da receita">
+
+        <label for="usuário da receita">Usuário da Receita</label>
+
+        <input type="text" asp-for="UserId" class="form-control" placeholder="digite o usuário da receita">
+
+        <label for="data da receita">Data da Receita</label>
+
+        <input type="date" asp-for="Date" class="form-control" placeholder="digite a data da receita">
+
+       
+        <small class="form-text text-muted">Lembre-se de adicionar uma receita que ainda não possui registro.</small>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Adicionar</button>
+    <a role="button" class="btn btn-secondary" asp-controller="Revenue" asp-action="Index">Voltar</a>
+
+</form>

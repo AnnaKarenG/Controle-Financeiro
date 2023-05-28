@@ -47,10 +47,16 @@ namespace WebApp_ControleDeGastos.Controllers
 
 
         [HttpPost]
-        public async Task<IActionResult> AddRevenue(Revenue revenue)
+        public async Task<IActionResult> ToAddRevenue(Revenue revenue)
         {
            await _revenue.AddRevenue(revenue);
             return RedirectToAction("Index");
+
+        }
+
+        public async Task<IActionResult> AddRevenue(Revenue revenue)
+        {
+            return View();
 
         }
 
@@ -65,5 +71,3 @@ namespace WebApp_ControleDeGastos.Controllers
 
     }
 }
-
-

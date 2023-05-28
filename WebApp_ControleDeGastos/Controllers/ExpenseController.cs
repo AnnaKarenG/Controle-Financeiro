@@ -47,10 +47,16 @@ namespace WebApp_ControleDeGastos.Controllers
 
 
         [HttpPost]
-        public async Task <IActionResult> AddExpense(Expense expense)
+        public async Task <IActionResult> ToAddExpense(Expense expense)
         {
           await _expense.AddExpense(expense);
             return RedirectToAction("Index");
+
+        }
+
+        public async Task<IActionResult> AddExpense(Expense expense)
+        {
+            return View(); 
 
         }
 
@@ -65,5 +71,3 @@ namespace WebApp_ControleDeGastos.Controllers
 
     }
 }
-
-

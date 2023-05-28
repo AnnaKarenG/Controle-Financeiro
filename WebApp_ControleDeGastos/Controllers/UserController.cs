@@ -36,7 +36,15 @@ namespace WebApp_ControleDeGastos.Controllers
 
         }
 
-        [HttpPost]
+        public async Task<IActionResult> ContaView(long id)
+        {
+            User user = _user.GetUserById(id);
+
+            return View("ContaView", user);
+        }
+
+        [HttpPost()]
+        
         public async Task<IActionResult> Login(User user)
         {
             List<User> users = _user.GetAllUser();
@@ -99,5 +107,3 @@ namespace WebApp_ControleDeGastos.Controllers
 
     }
 }
-
-

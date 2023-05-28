@@ -41,8 +41,10 @@ namespace WebApp_ControleDeGastos.Repository
 
             if (revenueId != null)
             {
-                revenue.RevenueId = revenueId.RevenueId;
-                dbContext.Revenue.Update(revenue);
+                revenueId.Value = revenue.Value;
+                revenueId.UserId = revenue.UserId;
+                revenueId.Date = revenue.Date;
+                dbContext.Revenue.Update(revenueId);
                 await dbContext.SaveChangesAsync();
 
                 return revenueId;

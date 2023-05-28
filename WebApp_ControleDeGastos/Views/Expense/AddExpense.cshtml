@@ -1,0 +1,57 @@
+﻿@model Expense
+
+@{
+   ViewData["Title"] = "Adicionar Despesa";
+} 
+
+<div class="text-center">
+    <h3>Adicionar Despesa</h3>
+</div>
+
+<form  method="post" action="https://localhost:44313/Expense/ToAddExpense">
+
+    <div class="form-group">
+        <label for="valor da despesa">Valor da despesa</label>
+
+        <input type="float" asp-for="Value" class="form-control" placeholder="digite o valor da despesa">
+
+        <label for="descrição da despesa">Descrição da despesa</label>
+
+        <input type="text" asp-for="Description" class="form-control" placeholder="digite a descrição da despesa">
+
+        <label for="tipo de pagamento da despesa">Tipo de pagamento da despesa</label>
+
+        <input type="text" asp-for="type" class="form-control" placeholder="digite o tipo de pagamento da despesa">
+       
+        <label for="número de parcelas da despesa">Número de parcelas da despesa</label>
+
+        <input type="text" asp-for="NumberInstallments" class="form-control" placeholder="digite o número de parcelas da despesa">
+
+        <label for="status da despesa">Status da despesa</label>
+
+        <input type="text" asp-for="Status" class="form-control" placeholder="digite o status da despesa">
+
+        <label for="número do cartão da despesa">Número do cartão da despesa</label>
+
+        <input type="text" asp-for="NumberCard" class="form-control" placeholder="digite o número do cartão da despesa">
+
+        <label for="data da despesa">Data da despesa</label>
+
+        <input type="date" asp-for="Date" class="form-control" placeholder="digite a data da despesa">
+
+        <label for="nome da categoria da despesa">Nome da categoria da despesa</label>
+
+        <input type="text" asp-for="CategoryName" class="form-control" placeholder="digite o nome da categoria da despesa">
+
+        <label for="usuário da despesa">Usuário da despesa</label>
+
+        <input type="text" asp-for="UserId" class="form-control" placeholder="informe o usuário da despesa">
+
+        <small class="form-text text-muted">Lembre-se de adicionar uma receita que ainda não possui registro.</small>
+
+    </div>
+
+    <button type="submit" class="btn btn-primary">Adicionar</button>
+    <a role="button" class="btn btn-secondary" asp-controller="Expense" asp-action="Index">Voltar</a>
+
+</form>

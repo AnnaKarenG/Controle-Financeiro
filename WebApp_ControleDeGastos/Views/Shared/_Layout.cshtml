@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
-    <header>
+   @* <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Controle Financeiro</a>
@@ -31,13 +31,16 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Card" asp-action="Index"> Meus Cartões</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Receitas" asp-action=""> Minhas Receitas</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Revenue" asp-action="Index"> Minhas Receitas</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Expense" asp-action="Index"> Minhas Despesas</a>
                         </li>
                     </ul>
                 </div>
             </div>
         </nav>
-    </header>
+    </header>*@
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
