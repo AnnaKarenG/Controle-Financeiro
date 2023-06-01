@@ -6,10 +6,10 @@ namespace WebApp_ControleDeGastos.Repository.Interface
 {
     public interface IRevenue
     {
-        Task<List<Revenue>> GetAllRevenue();
-        Task<Revenue> GetRevenueById(int id);
+        List<Revenue> GetAllRevenue();
+        Revenue GetRevenueById(long id);
         Task<Revenue> AddRevenue(Revenue revenue);
         Task<Revenue> UpdateRevenue(Revenue revenue);
-        Task<bool> DeleteRevenue(int id);
+        Task<bool> DeleteRevenue(long id);
     }
 }

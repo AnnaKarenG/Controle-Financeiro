@@ -18,7 +18,7 @@ namespace WebApp_ControleDeGastos.Controllers
 
         public async Task <IActionResult> Index()
         {
-            List<Expense> expense = await _expense.GetAllExpense();
+            List<Expense> expense = _expense.GetAllExpense();
             return View(expense);
 
         }
@@ -27,14 +27,14 @@ namespace WebApp_ControleDeGastos.Controllers
         public async Task <IActionResult> UpdateExpense(int id)
         {
 
-            Expense expense = await _expense.GetExpenseById(id);
+            Expense expense =  _expense.GetExpenseById(id);
             return View(expense);
         }
 
         public async Task <IActionResult> DeleteExpense(int id)
         {
 
-            Expense expense = await _expense.GetExpenseById(id);
+            Expense expense = _expense.GetExpenseById(id);
             return View(expense);
         }
 

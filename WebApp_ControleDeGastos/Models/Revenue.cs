@@ -8,7 +8,7 @@ namespace WebApp_ControleDeGastos.Models
     public class Revenue
     {
         [Key]
-        public int RevenueId { get; set; }
+        public long RevenueId { get; set; }
 
         [Column(TypeName = "DECIMAL(15,2)")]
         [Required]
@@ -16,7 +16,7 @@ namespace WebApp_ControleDeGastos.Models
 
         [Column(TypeName = "BIGINT")]
         [Required]
-        public int UserId { get; set; }
+        public long UserId { get; set; }
 
         [Column(TypeName = "DATETIME")]
         [Required]

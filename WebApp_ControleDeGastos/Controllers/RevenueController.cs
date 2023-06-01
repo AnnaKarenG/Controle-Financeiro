@@ -1,9 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using WebApp_ControleDeGastos.Models;
 using WebApp_ControleDeGastos.Repository.Interface;
 using System.Threading.Tasks;
 using System.Linq;
+using Microsoft.AspNetCore.Mvc;
 
 namespace WebApp_ControleDeGastos.Controllers
 {
@@ -18,27 +18,27 @@ namespace WebApp_ControleDeGastos.Controllers
 
         public async Task<IActionResult> Index()
         {
-            List<Revenue> revenue = await _revenue.GetAllRevenue();
+            List<Revenue> revenue = _revenue.GetAllRevenue();
             return View(revenue);
 
         }
 
 
-        public async Task<IActionResult> UpdateRevenue(int id)
+        public async Task<IActionResult> UpdateRevenue(long id)
         {
 
-            Revenue revenue = await _revenue.GetRevenueById(id);
+            Revenue revenue =  _revenue.GetRevenueById(id);
             return View(revenue);
         }
 
-        public async Task<IActionResult> DeleteRevenue(int id)
+        public async Task<IActionResult> DeleteRevenue(long id)
         {
 
-            Revenue revenue = await _revenue.GetRevenueById(id);
+            Revenue revenue = _revenue.GetRevenueById(id);
             return View(revenue);
         }
 
-        public async Task<IActionResult> DeleteRecordRevenue(int id)
+        public async Task<IActionResult> DeleteRecordRevenue(long id)
         {
             await _revenue.DeleteRevenue(id);
 

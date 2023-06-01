@@ -9,7 +9,7 @@ namespace WebApp_ControleDeGastos.Models
     public class Expense
     {
         [Key]
-        public int ExpenseId { get; set; }
+        public long ExpenseId { get; set; }
 
         [Column(TypeName = "DECIMAL(15,2)")]
         [Required]
@@ -24,25 +24,25 @@ namespace WebApp_ControleDeGastos.Models
 
         [Column(TypeName = "INT")]
         [Required]
-        public int NumberInstallments { get; set; }
+        public long NumberInstallments { get; set; }
 
         [Column(TypeName = "VARCHAR(10)")]
         public Status Status { get; set; }
 
         [Column(TypeName = "INT")]
         [Required]
-        public int NumberCard { get; set; }
+        public long NumberCard { get; set; }
 
         [Column(TypeName = "DateTime")]
         public DateTime Date { get; set; }
 
         [Column(TypeName = "VARCHAR(20)")]
         [Required]
-        public string CategoryName { get; set; }
+        public long CategoryId { get; set; }
 
         [Column(TypeName = "BIGINT")]
         [Required]
-        public int UserId { get; set; }
+        public long UserId { get; set; }
 
     }
 }
