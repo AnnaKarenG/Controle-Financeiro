@@ -1,39 +1,217 @@
 ﻿<!doctype html>
 <html lang="pt-br">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Login</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-    <link rel="apple-touch-icon" href="/docs/5.3/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
-    <link rel="icon" href="/docs/5.3/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
-    <link rel="icon" href="/docs/5.3/assets/img/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
-    <link rel="manifest" href="/docs/5.3/assets/img/favicons/manifest.json">
-    <link rel="mask-icon" href="/docs/5.3/assets/img/favicons/safari-pinned-tab.svg" color="#712cf9">
-    <link rel="icon" href="/docs/5.3/assets/img/favicons/favicon.ico">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastrar-se</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
 
+        body {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #40a3f4;
+        }
+
+        .container {
+            position: relative;
+            max-width: 430px;
+            width: 100%;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            margin: 0 20px;
+        }
+
+            .container .forms {
+                display: flex;
+                align-items: center;
+                height: 440px;
+                width: 200%;
+                transition: height 0.2s ease;
+            }
+
+            .container .form {
+                width: 50%;
+                padding: 30px;
+                background-color: #fff;
+                transition: margin-left 0.18s ease;
+            }
+
+            .container.active .login {
+                margin-left: -50%;
+                opacity: 0;
+                transition: margin-left 0.18s ease, opacity 0.15s ease;
+            }
+
+            .container .signup {
+                opacity: 0;
+                transition: opacity 0.09s ease;
+            }
+
+            .container.active .signup {
+                opacity: 1;
+                transition: opacity 0.2s ease;
+            }
+
+            .container.active .forms {
+                height: 600px;
+            }
+
+            .container .form .title {
+                position: relative;
+                font-size: 27px;
+                font-weight: 600;
+            }
+
+        .form .title::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            height: 3px;
+            width: 30px;
+            background-color: #40a3f4;
+            border-radius: 25px;
+        }
+
+        .form .input-field {
+            position: relative;
+            height: 50px;
+            width: 100%;
+            margin-top: 30px;
+        }
+
+        .input-field input {
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            padding: 0 35px;
+            border: none;
+            outline: none;
+            font-size: 16px;
+            border-bottom: 2px solid #ccc;
+            border-top: 2px solid transparent;
+            transition: all 0.2s ease;
+        }
+
+            .input-field input:is(:focus, :valid) {
+                border-bottom-color: #40a3f4;
+            }
+
+        .input-field i {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #999;
+            font-size: 23px;
+            transition: all 0.2s ease;
+        }
+
+        .input-field input:is(:focus, :valid) ~ i {
+            color: #40a3f4;
+        }
+
+        .input-field i.icon {
+            left: 0;
+        }
+
+        .input-field i.showHidePw {
+            right: 0;
+            cursor: pointer;
+            padding: 10px;
+        }
+
+        .form .checkbox-text {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .checkbox-text .checkbox-content {
+            display: flex;
+            align-items: center;
+        }
+
+        .checkbox-content input {
+            margin-right: 10px;
+            accent-color: #40a3f4;
+        }
+
+        .form .text {
+            color: #333;
+            font-size: 14px;
+        }
+
+        .form a.text {
+            color: #40a3f4;
+            text-decoration: none;
+        }
+
+        .form a:hover {
+            text-decoration: underline;
+        }
+
+        .form .button {
+            margin-top: 35px;
+        }
+
+            .form .button button {
+                border: none;
+                color: #fff;
+                font-size: 17px;
+                font-weight: 500;
+                letter-spacing: 1px;
+                border-radius: 6px;
+                background-color: #40a3f4;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                padding: 10px 15px;
+            }
+
+        .button button:hover {
+            background-color: #40a3f4;
+        }
+
+        .form .login-signup {
+            margin-top: 30px;
+            text-align: center;
+        }
+    </style>
 </head>
-<body class="text-center" style="background-color: #f5f5f5; display: flex; align-items: center; padding-top: 40px; padding-bottom: 40px;">
-    <form style="display: block; margin-top: 0em; margin: auto !important;" method="post" action="https://localhost:44313/User/Login">
-        <img class="mb-4" src="imagens/logo.png" alt="" width="72" height="72">
-        <h1 class="h3 mb-3 fw-normal">Controle de Gastos</h1>
 
-        <div class="form-floating">
-            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" name="Email">
-            <label for="floatingInput">E-mail</label>
+<body>
+    <div class="container">
+        <div class="forms">
+            <form class="form login" method="post" action="https://localhost:44313/User/Login">
+                <h2 class="title">Login</h2>
+                <div class="input-field">
+                    <input type="email" name="Email" placeholder="E-mail">
+                    <i class="fas fa-envelope"></i>
+                </div>
+                <div class="input-field">
+                    <input type="password" name="Password" placeholder="Senha">
+                    <i class="fas fa-lock"></i>
+                </div>
+                <div class="button">
+                    <button type="submit">Entrar</button>
+                </div>
+                <div class="login-signup">
+                    Não tem uma conta? <a href="https://localhost:44313/User/AddUser">Cadastre-se</a>
+                </div>
+            </form>
         </div>
-
-        <div class="form-floating">
-            <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="Password">
-            <label for="floatingPassword">Senha</label>
-        </div>
-
-        <button class="w-100 btn btn-lg btn-primary" style="margin-top: 20px;" type="submit">Entrar</button>
-
-        <p><a href="https://localhost:44313/User/AddUser" class="link-primary">Criar nova conta</a></p>
-
-        <p class="mt-5 mb-3 text-body-secondary">© 2023</p>
-    </form>
+        <p><a href="#">Termos de Serviço</a> e <a href="#">Política de Privacidade</a></p>
+    </div>
 </body>
 </html>
