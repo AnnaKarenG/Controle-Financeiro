@@ -8,7 +8,7 @@
     <style>
         * {
             margin: 0;
-            padding: 5px;
+            padding: 10px;
             box-sizing: border-box;
             font-family: 'Poppins', sans-serif;
         }
@@ -106,6 +106,7 @@
 
             .input-field input:is(:focus, :valid) {
                 border-bottom-color: #40a3f4;
+                background-color: #40a3f4
             }
 
         .input-field i {
@@ -166,9 +167,9 @@
             margin-top: 35px;
         }
 
-            .form .button button {
+            .form .button input[type="submit"] {
                 border: none;
-                color: #40a3f4;
+                color: #ffffff;
                 font-size: 17px;
                 font-weight: 500;
                 letter-spacing: 1px;
@@ -179,7 +180,7 @@
                 padding: 10px 15px;
             }
 
-        .button button:hover {
+        .button input[type="submit"]:hover {
             background-color: #40a3f4;
         }
 
@@ -211,7 +212,7 @@
                     <input type="file" name="avatar" accept="image/*" required>
                 </div>
                 <div class="input-field button">
-                    <input type="submit" value="Signup">
+                    <input type="submit" value="Cadastrar">
                 </div>
             </form>
         </div>

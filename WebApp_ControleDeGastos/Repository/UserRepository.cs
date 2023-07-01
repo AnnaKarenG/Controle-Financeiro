@@ -93,7 +93,7 @@ namespace WebApp_ControleDeGastos.Repository
                 command.Parameters.AddWithValue("@paramEmail", user.Email);
                 command.Parameters.AddWithValue("@paramPassword", user.Password);
 
-                // Verifica se foi fornecido um avatar
+                //Verificando se foi fornecido um avatar
                 if (avatar != null && avatar.Length > 0)
                 {
                     using (var memoryStream = new MemoryStream())
@@ -114,9 +114,6 @@ namespace WebApp_ControleDeGastos.Repository
                 return user;
             }
         }
-
-
-
 
         public async Task<User> UpdateUser(User user)
         {
