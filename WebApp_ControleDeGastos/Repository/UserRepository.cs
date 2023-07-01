@@ -1,9 +1,11 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Threading.Tasks;
 using WebApp_ControleDeGastos.Database;
 using WebApp_ControleDeGastos.Models;
@@ -80,16 +82,27 @@ namespace WebApp_ControleDeGastos.Repository
             }
         }
 
-        public async Task<User> AddUser(User user)
+        public async Task<User> AddUser(User user, IFormFile avatar)
         {
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
                 SqlCommand command = new SqlCommand("AddUser", connection);
                 command.CommandType = CommandType.StoredProcedure;
 
-                command.Parameters.AddWithValue("@paramName", user.Name );
+                command.Parameters.AddWithValue("@paramName", user.Name);
                 command.Parameters.AddWithValue("@paramEmail", user.Email);
                 command.Parameters.AddWithValue("@paramPassword", user.Password);
+
+                // Verifica se foi fornecido um avatar
+                if (avatar != null && avatar.Length > 0)
+                {
+                    using (var memoryStream = new MemoryStream())
+                    {
+                        await avatar.CopyToAsync(memoryStream);
+                        user.Avatar = Convert.ToBase64String(memoryStream.ToArray());
+                    }
+                }
+
                 command.Parameters.AddWithValue("@paramAvatar", user.Avatar);
 
                 connection.Open();
@@ -101,6 +114,9 @@ namespace WebApp_ControleDeGastos.Repository
                 return user;
             }
         }
+
+
+
 
         public async Task<User> UpdateUser(User user)
         {

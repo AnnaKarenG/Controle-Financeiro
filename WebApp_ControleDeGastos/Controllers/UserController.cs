@@ -4,6 +4,7 @@ using WebApp_ControleDeGastos.Models;
 using WebApp_ControleDeGastos.Repository.Interface;
 using System.Threading.Tasks;
 using System.Linq;
+using Microsoft.AspNetCore.Http;
 
 namespace WebApp_ControleDeGastos.Controllers
 {
@@ -89,12 +90,12 @@ namespace WebApp_ControleDeGastos.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> ToAddUser(User user)
+        public async Task<IActionResult> ToAddUser(User user, IFormFile avatar)
         {
-            await _user.AddUser(user);
+            await _user.AddUser(user, avatar);
             return RedirectToAction("LoginUser");
-
         }
+
 
 
         [HttpPost]
