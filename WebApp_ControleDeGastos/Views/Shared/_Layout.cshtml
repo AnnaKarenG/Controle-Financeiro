@@ -6,7 +6,21 @@
     <title>@ViewData["Title"] - WebApp_ControleDeGastos</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
-</head>
+    <style>
+        .container-layout {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            max-width: 100%;
+            width: 100%;
+            background: #fff;
+            border-radius: 0px;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            height: 50px;
+        }
+    </style>
+  </head>
 <body>
    @* <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
@@ -46,9 +60,8 @@
             @RenderBody()
         </main>
     </div>
-
     <footer class="border-top footer text-muted">
-        <div class="container">
+        <div class="container-layout">
             &copy; 2023 - WebApp_ControleDeGastos
         </div>
     </footer>
