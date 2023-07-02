@@ -19,7 +19,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background-color: #40a3f4;
+            background-color: #32bea6;
         }
 
         .container {
@@ -81,7 +81,7 @@
             bottom: 0;
             height: 3px;
             width: 30px;
-            background-color: #40a3f4;
+            background-color: #32bea6;
             border-radius: 25px;
         }
 
@@ -92,7 +92,10 @@
             margin-top: 30px;
         }
 
-        .input-field input {
+        .input-field input[type="text"],
+        .input-field input[type="url"],
+        .input-field input[type="password"],
+        .input-field input[type="file"] {
             position: absolute;
             height: 100%;
             width: 100%;
@@ -100,15 +103,15 @@
             border: none;
             outline: none;
             font-size: 16px;
-            border-bottom: 2px solid #40a3f4;
+            border-bottom: 2px solid #ccc;
             border-top: 2px solid transparent;
             transition: all 0.2s ease;
         }
 
-            .input-field input:is(:focus, :valid) {
-                border-bottom-color: #40a3f4;
-                background-color: #40a3f4
-            }
+        .input-field input:is(:focus, :valid) {
+            border-bottom-color: #32bea6;
+            background-color: #32bea6
+        }
 
         .input-field i {
             position: absolute;
@@ -120,7 +123,7 @@
         }
 
         .input-field input:is(:focus, :valid) ~ i {
-            color: #40a3f4;
+            color: #32bea6;
         }
 
         .input-field i.icon {
@@ -147,7 +150,7 @@
 
         .checkbox-content input {
             margin-right: 10px;
-            accent-color: #40a3f4;
+            accent-color: #32bea6;
         }
 
         .form .text {
@@ -156,7 +159,7 @@
         }
 
         .form a.text {
-            color: #40a3f4;
+            color: #32bea6;
             text-decoration: none;
         }
 
@@ -175,20 +178,35 @@
                 font-weight: 500;
                 letter-spacing: 1px;
                 border-radius: 6px;
-                background-color: #40a3f4;
+                background-color: #32bea6;
                 cursor: pointer;
                 transition: all 0.3s ease;
                 padding: 10px 15px;
             }
 
         .button input[type="submit"]:hover {
-            background-color: #40a3f4;
+            background-color: #32bea6;
         }
 
         .form .login-signup {
             margin-top: 30px;
             text-align: center;
         }
+
+        /* Styles for displaying images side by side */
+        .image-preview-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+            .image-preview-container img {
+                width: 80px;
+                height: 80px;
+                border-radius: 50%;
+                margin-right: 10px;
+                cursor: pointer;
+            }
     </style>
 </head>
 
@@ -210,7 +228,12 @@
                     <i class="uil uil-lock icon"></i>
                 </div>
                 <div class="input-field">
-                    <input type="file" name="avatar" accept="image/*" required>
+                    <div class="image-preview-container">
+                        <img src="https://img.freepik.com/vetores-premium/icone-de-perfil-de-avatar_188544-4755.jpg" onclick="selectImage(this.src)">
+                        <img src="https://img.freepik.com/icones-gratis/do-utilizador_318-644324.jpg" onclick="selectImage(this.src)">
+                        <img src="https://img.freepik.com/free-icon/user_318-180888.jpg" onclick="selectImage(this.src)">
+                    </div>
+                    <input type="hidden" name="avatar" id="avatarInput">
                 </div>
                 <div class="input-field button">
                     <input type="submit" value="Cadastrar">
@@ -218,5 +241,12 @@
             </form>
         </div>
     </div>
+
+    <script>
+        function selectImage(src) {
+            var avatarInput = document.getElementById('avatarInput');
+            avatarInput.value = src;
+        }
+    </script>
 </body>
 </html>
