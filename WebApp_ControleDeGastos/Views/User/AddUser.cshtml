@@ -1,4 +1,4 @@
-﻿<!doctype html>
+﻿<!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
@@ -8,14 +8,13 @@
     <style>
         * {
             margin: 0;
-            padding: 10px;
+            padding: 0;
             box-sizing: border-box;
             font-family: 'Poppins', sans-serif;
         }
 
         body {
             height: 100vh;
-            width: 100%;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -110,7 +109,7 @@
 
         .input-field input:is(:focus, :valid) {
             border-bottom-color: #32bea6;
-            background-color: #32bea6
+            background-color: #32bea6;
         }
 
         .input-field i {
@@ -120,10 +119,13 @@
             color: #999;
             font-size: 23px;
             transition: all 0.2s ease;
+            margin-top: 35px;
+            display: flex;
+            justify-content: center;
         }
 
         .input-field input:is(:focus, :valid) ~ i {
-            color: #32bea6;
+            color: #999;
         }
 
         .input-field i.icon {
@@ -168,7 +170,8 @@
         }
 
         .form .button {
-            margin-top: 35px;
+            margin-top: 65px;
+            text-align: center; 
         }
 
             .form .button input[type="submit"] {
@@ -182,6 +185,7 @@
                 cursor: pointer;
                 transition: all 0.3s ease;
                 padding: 10px 15px;
+                margin: 0 auto; /* Adicionado para centralizar o botão */
             }
 
         .button input[type="submit"]:hover {
@@ -193,7 +197,6 @@
             text-align: center;
         }
 
-        /* Styles for displaying images side by side */
         .image-preview-container {
             display: flex;
             align-items: center;
@@ -201,9 +204,9 @@
         }
 
             .image-preview-container img {
-                width: 80px;
-                height: 80px;
-                border-radius: 50%;
+                width: 70px;
+                height: 70px;
+                border-radius: 40%;
                 margin-right: 10px;
                 cursor: pointer;
             }
@@ -228,9 +231,9 @@
                     <i class="uil uil-lock icon"></i>
                 </div>
                 <div class="input-field">
+                    <p>Selecione sua foto de perfil</p>
                     <div class="image-preview-container">
                         <img src="https://img.freepik.com/vetores-premium/icone-de-perfil-de-avatar_188544-4755.jpg" onclick="selectImage(this.src)">
-                        <img src="https://img.freepik.com/icones-gratis/do-utilizador_318-644324.jpg" onclick="selectImage(this.src)">
                         <img src="https://img.freepik.com/free-icon/user_318-180888.jpg" onclick="selectImage(this.src)">
                     </div>
                     <input type="hidden" name="avatar" id="avatarInput">
