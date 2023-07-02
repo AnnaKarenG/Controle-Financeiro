@@ -45,7 +45,7 @@ namespace WebApp_ControleDeGastos.Controllers
         }
 
         [HttpPost()]
-        
+
         public async Task<IActionResult> Login(User user)
         {
             List<User> users = _user.GetAllUser();
@@ -57,9 +57,10 @@ namespace WebApp_ControleDeGastos.Controllers
                     return RedirectToAction("ContaUser", item);
                 }
             }
-
-            return BadRequest();
-
+            //mensagem de erro
+            ViewBag.ErrorMessage = "Email ou senha incorretos.";
+            
+            return View("Login");
         }
 
         public async Task<IActionResult> UpdateUser(long id)

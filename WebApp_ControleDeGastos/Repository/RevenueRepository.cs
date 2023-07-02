@@ -88,6 +88,7 @@ namespace WebApp_ControleDeGastos.Repository
                 connection.Open();
 
                 int revenueId = (int)(decimal)await command.ExecuteScalarAsync();
+                //int revenueId = Convert.ToInt32(await command.ExecuteScalarAsync());
 
                 revenue.RevenueId = revenueId;
 

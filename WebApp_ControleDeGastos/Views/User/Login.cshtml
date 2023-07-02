@@ -201,6 +201,14 @@
                     <input type="password" name="Password" placeholder="Senha">
                     <i class="fas fa-lock"></i>
                 </div>
+
+                @if (!string.IsNullOrEmpty(ViewBag.ErrorMessage))
+                {
+                    <div class="alert alert-danger mt-4" role="alert">
+                        @ViewBag.ErrorMessage
+                    </div>
+                }
+
                 <div class="button">
                     <button type="submit">Entrar</button>
                 </div>
