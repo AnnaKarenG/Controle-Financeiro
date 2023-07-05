@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using WebApp_ControleDeGastos.Autentication;
 
 namespace WebApp_ControleDeGastos.Models
 {
@@ -23,5 +24,10 @@ namespace WebApp_ControleDeGastos.Models
         [Column(TypeName = "VARCHAR(200)")]
         [Required]
         public string Avatar { get; set; }
+
+        public void SetPasswordHash()
+        {
+            Password = Password.GerarHash();
+        }
     }
 }

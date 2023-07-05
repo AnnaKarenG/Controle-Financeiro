@@ -108,7 +108,7 @@ namespace WebApp_ControleDeGastos.Repository
                 connection.Open();
 
                 int userId = (int)(decimal)await command.ExecuteScalarAsync();
-
+                user.SetPasswordHash();
                 user.UserId = userId;
 
                 return user;
