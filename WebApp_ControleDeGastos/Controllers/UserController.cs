@@ -5,6 +5,7 @@ using WebApp_ControleDeGastos.Repository.Interface;
 using System.Threading.Tasks;
 using System.Linq;
 using Microsoft.AspNetCore.Http;
+using WebApp_ControleDeGastos.Autentication;
 
 namespace WebApp_ControleDeGastos.Controllers
 {
@@ -52,14 +53,13 @@ namespace WebApp_ControleDeGastos.Controllers
 
             foreach (User item in users)
             {
-                if (item.Email == user.Email && item.Password == user.Password)
+                if (item.Email == user.Email && item.Password == user.Password.GerarHash())
                 {
                     return RedirectToAction("ContaUser", item);
                 }
             }
-            //mensagem de erro
+
             ViewBag.ErrorMessage = "Email ou senha incorretos.";
-            
             return View("Login");
         }
 

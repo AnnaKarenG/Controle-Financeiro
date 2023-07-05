@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -7,6 +8,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Threading.Tasks;
+using WebApp_ControleDeGastos.Autentication;
 using WebApp_ControleDeGastos.Database;
 using WebApp_ControleDeGastos.Models;
 using WebApp_ControleDeGastos.Repository.Interface;
@@ -89,6 +91,7 @@ namespace WebApp_ControleDeGastos.Repository
                 SqlCommand command = new SqlCommand("AddUser", connection);
                 command.CommandType = CommandType.StoredProcedure;
 
+                user.SetPasswordHash();
                 command.Parameters.AddWithValue("@paramName", user.Name);
                 command.Parameters.AddWithValue("@paramEmail", user.Email);
                 command.Parameters.AddWithValue("@paramPassword", user.Password);
@@ -108,7 +111,6 @@ namespace WebApp_ControleDeGastos.Repository
                 connection.Open();
 
                 int userId = (int)(decimal)await command.ExecuteScalarAsync();
-                user.SetPasswordHash();
                 user.UserId = userId;
 
                 return user;
