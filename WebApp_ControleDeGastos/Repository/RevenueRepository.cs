@@ -35,7 +35,7 @@ namespace WebApp_ControleDeGastos.Repository
                         Revenue revenue = new Revenue();
                         revenue.RevenueId = (int)(long)reader["RevenueId"];
                         revenue.Value = (float)(decimal)reader["Value"];
-                        revenue.UserId = (int)(long)reader["Limite"];
+                        revenue.UserId = (int)(long)reader["UserId"];
                         revenue.Date = (System.DateTime)reader["Date"];
 
                         revenues.Add(revenue);
@@ -105,7 +105,6 @@ namespace WebApp_ControleDeGastos.Repository
 
                 command.Parameters.AddWithValue("@paramRevenueId", revenue.RevenueId);
                 command.Parameters.AddWithValue("@paramValue", revenue.Value);
-                command.Parameters.AddWithValue("@paramUserId", revenue.UserId);
                 command.Parameters.AddWithValue("@paramDate", revenue.Date);
 
                 connection.Open();

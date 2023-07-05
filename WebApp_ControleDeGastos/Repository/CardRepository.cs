@@ -153,6 +153,40 @@ namespace WebApp_ControleDeGastos.Repository
                 return rowsAffected > 0;
             }
         }
+
+        public Card GetCardByNumber(long numberCard)
+        {
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                SqlCommand command = new SqlCommand("GetCardByNumber", connection);
+                command.CommandType = CommandType.StoredProcedure;
+
+                command.Parameters.AddWithValue("@paramNumber", numberCard);
+
+                connection.Open();
+
+                Card card = null;
+
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        card = new Card();
+                        card.CardId = (int)(long)reader["CardId"];
+                        card.NumberCard = (int)(long)reader["NumberCard"];
+                        // card.type = (Enum.Enums.CardType)(long)reader["Type"];
+                        card.Balance = (float)(decimal)reader["Balance"];
+                        card.Limite = (float)(decimal)reader["Limite"];
+                        card.InvoiceAmount = (float)(decimal)reader["InvoiceAmount"];
+                        card.InvoiceDate = (System.DateTime)reader["InvoiceDate"];
+                        card.Flag = (string)reader["Flag"];
+                        card.Nome = (string)reader["Nome"];
+                    }
+                }
+
+                return card;
+            }
+        }
     }
 }
 

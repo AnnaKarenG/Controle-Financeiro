@@ -165,3 +165,32 @@ BEGIN
 END
 GO
 
+----------------GET----------------
+USE [ControleFinanceiro]
+GO
+/****** Object:  StoredProcedure [dbo].[GetCardByNumber]    Script Date: 7/5/2023 12:24:15 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[GetCardByNumber]
+    @paramNumber BIGINT
+
+AS
+BEGIN
+    SELECT
+	  [CardId],
+      [NumberCard],
+      [type],
+      [Balance],
+      [Limite],
+      [InvoiceAmount],
+      [InvoiceDate],
+      [Flag],
+      [Nome]
+    FROM
+        [Card] WITH (NOLOCK)
+    WHERE
+       [NumberCard] = @paramNumber
+END

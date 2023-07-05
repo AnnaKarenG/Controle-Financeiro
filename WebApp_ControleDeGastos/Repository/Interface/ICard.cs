@@ -11,5 +11,6 @@ namespace WebApp_ControleDeGastos.Repository.Interface
         Task<Card> AddCard(Card card);
         Task<Card> UpdateCard(Card card);
         Task<bool> DeleteCard(long id);
+        Card GetCardByNumber(long id);
     }
 }
