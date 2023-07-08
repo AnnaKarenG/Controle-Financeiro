@@ -12,7 +12,6 @@
         {
             Debit = 0,
             Credit = 1,
-            Money = 2,
         }
 
         public enum Status

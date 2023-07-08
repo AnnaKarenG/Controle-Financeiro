@@ -22,7 +22,10 @@
 
         <label for="tipo de pagamento da despesa">Tipo de pagamento da despesa</label>
 
-        <input type="text" asp-for="type" class="form-control" placeholder="digite o tipo de pagamento da despesa">
+        <select asp-for="type" class="form-control" placeholder="digite o tipo de pagamento da despesa">
+            <option value="1">Credito</option>
+            <option value="0">Debito</option>
+        </select>
 
         <label for="número de parcelas da despesa">Número de parcelas da despesa</label>
 
@@ -30,7 +33,10 @@
 
         <label for="status da despesa">Status da despesa</label>
 
-        <input type="text" asp-for="Status" class="form-control" placeholder="digite o status da despesa">
+        <select asp-for="Status" class="form-control" placeholder="digite o tipo de pagamento da despesa">
+            <option value="1">Não pago</option>
+            <option value="0">Pago</option>
+        </select>
 
         <label for="número do cartão da despesa">Número do cartão da despesa</label>
 

@@ -26,7 +26,7 @@ namespace WebApp_ControleDeGastos.Models
         [Required]
         public long NumberInstallments { get; set; }
 
-        [Column(TypeName = "VARCHAR(10)")]
+        [Column(TypeName = "TINYINT")]
         public Status Status { get; set; }
 
         [Column(TypeName = "INT")]

@@ -32,7 +32,10 @@
 
         <label for="status da despesa">Status da despesa</label>
 
-        <input type="text" asp-for="Status" class="form-control" placeholder="digite o status da despesa">
+        <select asp-for="Status" class="form-control" placeholder="digite o tipo de pagamento da despesa">
+            <option value="1">Não pago</option>
+            <option value="0">Pago</option>
+        </select>
 
         <label for="número do cartão da despesa">Número do cartão da despesa</label>
 

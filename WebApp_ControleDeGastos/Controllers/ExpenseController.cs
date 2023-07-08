@@ -28,19 +28,19 @@ namespace WebApp_ControleDeGastos.Controllers
         }
 
 
-        public async Task <IActionResult> UpdateExpense(int id)
+        public async Task <IActionResult> UpdateExpense(long id)
         {
             Expense expense =  _expense.GetExpenseById(id);
             return View(expense);
         }
 
-        public async Task <IActionResult> DeleteExpense(int id)
+        public async Task <IActionResult> DeleteExpense(long id)
         {
             Expense expense = _expense.GetExpenseById(id);
             return View(expense);
         }
 
-        public async Task <IActionResult> DeleteRecordExpense(int id)
+        public async Task <IActionResult> DeleteRecordExpense(long id)
         {
             await _expense.DeleteExpense(id);
 
@@ -72,7 +72,7 @@ namespace WebApp_ControleDeGastos.Controllers
 
             if (card != null)
             {
-                if (expense.type > Enum.Enums.PaymentType.Credit && expense.Value <= card.Limite && card.InvoiceDate < expense.Date)
+                if (expense.type > Enum.Enums.PaymentType.Credit && expense.Value <= card.Limite)
                     card.Limite = card.Limite - expense.Value;
                 else if (expense.type > Enum.Enums.PaymentType.Debit && expense.Value <= card.Balance)
                     card.Balance = card.Balance - expense.Value;

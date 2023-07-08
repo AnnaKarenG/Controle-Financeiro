@@ -18,7 +18,10 @@
 
         <label for="tipo do cartão">Tipo do cartão</label>
 
-        <input type="text" asp-for="type" class="form-control" placeholder="tipo do cartão">
+        <select asp-for="type" class="form-control" placeholder="digite o tipo do cartão">
+        <option value="1">Credito</option>
+        <option value="0">Debito</option>
+        </select>
 
         <label for="valor em conta corrente do cartão">Valor em conta corrente do cartão</label>
 
@@ -38,7 +41,11 @@
 
         <label for="bandeira do cartão">Bandeira do cartão</label>
 
-        <input type="text" asp-for="Flag" class="form-control" placeholder="informe a bandeira do cartão">
+        <select asp-for="Flag" class="form-control" placeholder="digite a bandeira do cartão">
+            <option value="Visa">Visa</option>
+            <option value="Master">Master</option>
+            <option value="Cielo">Cielo</option>
+        </select>
 
         <label for="usuário do cartão">Usuário do cartão</label>
 
