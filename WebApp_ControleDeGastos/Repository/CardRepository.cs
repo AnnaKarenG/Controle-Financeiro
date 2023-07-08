@@ -1,11 +1,12 @@
 ﻿using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Threading.Tasks;
 using WebApp_ControleDeGastos.Models;
 using WebApp_ControleDeGastos.Repository.Interface;
-
+using static WebApp_ControleDeGastos.Enum.Enums;
 
 namespace WebApp_ControleDeGastos.Repository
 {
@@ -36,7 +37,8 @@ namespace WebApp_ControleDeGastos.Repository
                         Card card = new Card();
                         card.CardId = (int)(long)reader["CardId"];
                         card.NumberCard = (int)(long)reader["NumberCard"];
-                        //card.type = (Enum.Enums.CardType)reader["Type"];
+                        byte typeByte = (byte)reader["Type"];
+                        card.type = (CardType)typeByte;
                         card.Balance = (float)(decimal)reader["Balance"];
                         card.Limite = (float)(decimal)reader["Limite"];
                         card.InvoiceAmount = (float)(decimal)reader["InvoiceAmount"];
@@ -72,7 +74,8 @@ namespace WebApp_ControleDeGastos.Repository
                         card = new Card();
                         card.CardId = (int)(long)reader["CardId"];
                         card.NumberCard = (int)(long)reader["NumberCard"];
-                        // card.type = (Enum.Enums.CardType)(long)reader["Type"];
+                        byte typeByte = (byte)reader["Type"];
+                        card.type = (CardType)typeByte;
                         card.Balance = (float)(decimal)reader["Balance"];
                         card.Limite = (float)(decimal)reader["Limite"];
                         card.InvoiceAmount = (float)(decimal)reader["InvoiceAmount"];
@@ -174,7 +177,8 @@ namespace WebApp_ControleDeGastos.Repository
                         card = new Card();
                         card.CardId = (int)(long)reader["CardId"];
                         card.NumberCard = (int)(long)reader["NumberCard"];
-                        // card.type = (Enum.Enums.CardType)(long)reader["Type"];
+                        byte typeByte = (byte)reader["Type"];
+                        card.type = (CardType)typeByte;
                         card.Balance = (float)(decimal)reader["Balance"];
                         card.Limite = (float)(decimal)reader["Limite"];
                         card.InvoiceAmount = (float)(decimal)reader["InvoiceAmount"];
@@ -189,71 +193,3 @@ namespace WebApp_ControleDeGastos.Repository
         }
     }
 }
-
-/*private readonly SistemaFinanceiroDBContext dbContext;
-public CardRepository(SistemaFinanceiroDBContext sistemaFinanceiroDBContext)
-{
-
-    dbContext = sistemaFinanceiroDBContext;
-}
-
-public List<Card> GetAllCard()
-{
-    return dbContext.Card.ToList();
-}
-
-public async Task<Card> GetCardById(long id)
-{
-    return await dbContext.Card.FirstOrDefaultAsync(x => x.CardId == id);
-}
-
-public async Task<Card> AddCard(Card card)
-{
-    dbContext.Card.Add(card);
-    await dbContext.SaveChangesAsync();
-    return card;
-}
-
-public async Task<Card> UpdateCard(Card card)
-{
-    Card cardId = await dbContext.Card.FirstOrDefaultAsync(x => x.CardId == card.CardId);
-
-    if (cardId != null)
-    {
-        cardId.NumberCard = card.NumberCard;
-        cardId.type = card.type;
-        cardId.Balance = card.Balance;
-        cardId.Limite = card.Limite;
-        cardId.InvoiceAmount = card.InvoiceAmount;
-        cardId.InvoiceDate = card.InvoiceDate;
-        cardId.Flag = card.Flag;
-        cardId.UserId = card.UserId;
-        dbContext.Card.Update(cardId);
-        await dbContext.SaveChangesAsync();
-
-        return cardId;
-    }
-    else
-    {
-        throw new Exception($"Cartão não encontrado");
-    }
-}
-
-public async Task<bool> DeleteCard(long id)
-{
-    Card cardId = await GetCardById(id);
-
-    if (cardId == null)
-    {
-        throw new Exception($"Cartão não encontrado");
-    }
-    else
-    {
-        dbContext.Card.Remove(cardId);
-        await dbContext.SaveChangesAsync();
-        return true;
-    }
-}
-}
-}
-*/

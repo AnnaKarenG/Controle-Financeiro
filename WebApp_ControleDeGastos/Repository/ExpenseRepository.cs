@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Data.SqlClient;
 using System.Data;
+using static WebApp_ControleDeGastos.Enum.Enums;
 
 namespace WebApp_ControleDeGastos.Repository
 {
@@ -39,9 +40,11 @@ namespace WebApp_ControleDeGastos.Repository
                         expense.ExpenseId = (int)(long)reader["ExpenseId"];
                         expense.Value = (float)(decimal)reader["Value"];
                         expense.Description = (string)reader["Description"];
-                        //expense.type = (Enum.Enums.PaymentType)reader["Type"];
+                        byte PaymentTypeByte = (byte)reader["Type"];
+                        expense.type = (PaymentType)PaymentTypeByte;
                         expense.NumberInstallments = (int)(long)reader["NumberInstallments"];
-                        //expense.status = (Enum.Enums.Status)reader["Type"];
+                        byte status = (byte)reader["Status"];
+                        expense.Status = (Status)status;
                         expense.NumberCard = (int)(long)reader["NumberCard"];
                         expense.Date = (System.DateTime)reader["Date"];
                         expense.CategoryId = (int)(long)reader["CategoryId"];
@@ -76,13 +79,16 @@ namespace WebApp_ControleDeGastos.Repository
                         expense.ExpenseId = (int)(long)reader["ExpenseId"];
                         expense.Value = (float)(decimal)reader["Value"];
                         expense.Description = (string)reader["Description"];
-                        //expense.type = (Enum.Enums.PaymentType)reader["Type"];
+                        byte PaymentTypeByte = (byte)reader["Type"];
+                        expense.type = (PaymentType)PaymentTypeByte;
                         expense.NumberInstallments = (int)(long)reader["NumberInstallments"];
-                        //expense.status = (Enum.Enums.Status)reader["Type"];
+                        byte status = (byte)reader["Status"];
+                        expense.Status = (Status)status;
                         expense.NumberCard = (int)(long)reader["NumberCard"];
                         expense.Date = (System.DateTime)reader["Date"];
                         expense.CategoryId = (int)(long)reader["CategoryId"];
                         expense.UserId = (int)(long)reader["UserId"];
+
                     }
                 }
 
@@ -124,7 +130,7 @@ namespace WebApp_ControleDeGastos.Repository
                 SqlCommand command = new SqlCommand("UpdateExpense", connection);
                 command.CommandType = CommandType.StoredProcedure;
 
-                command.Parameters.AddWithValue("@DeleteExpense", expense.ExpenseId);
+                command.Parameters.AddWithValue("@paramExpenseId", expense.ExpenseId);
                 command.Parameters.AddWithValue("@paramValue", expense.Value);
                 command.Parameters.AddWithValue("@paramDescription", expense.Description);
                 command.Parameters.AddWithValue("@paramtype", expense.type);
@@ -150,7 +156,7 @@ namespace WebApp_ControleDeGastos.Repository
                 SqlCommand command = new SqlCommand("DeleteExpense", connection);
                 command.CommandType = CommandType.StoredProcedure;
 
-                command.Parameters.AddWithValue("@DeleteExpense", id);
+                command.Parameters.AddWithValue("@paramExpenseId", id);
 
                 connection.Open();
 
@@ -161,70 +167,3 @@ namespace WebApp_ControleDeGastos.Repository
         }
     }
 }
-
-        /*public ExpenseRepository(SistemaFinanceiroDBContext sistemaFinanceiroDBContext)
-        {
-
-            dbContext = sistemaFinanceiroDBContext;
-        }
-
-        public async Task<List<Expense>> GetAllExpense()
-        {
-            return await dbContext.Expense.ToListAsync();
-        }
-
-        public async Task<Expense> GetExpenseById(int id)
-        {
-            return await dbContext.Expense.FirstOrDefaultAsync(x => x.ExpenseId == id);
-        }
-
-        public async Task<Expense> AddExpense(Expense expense)
-        {
-            dbContext.Expense.Add(expense);
-            await dbContext.SaveChangesAsync();
-            return expense;
-        }
-
-        public async Task<Expense> UpdateExpense(Expense expense)
-        {
-            Expense expenseId = await dbContext.Expense.FirstOrDefaultAsync(x => x.ExpenseId == expense.ExpenseId);
-
-            if (expenseId != null)
-            {
-                expenseId.Value = expense.Value;
-                expenseId.Description = expense.Description;
-                expenseId.type = expense.type;
-                expenseId.NumberInstallments = expense.NumberInstallments;
-                expenseId.Status = expense.Status;
-                expenseId.NumberCard = expense.NumberCard;
-                expenseId.Date = expense.Date;
-                expenseId.CategoryName = expense.CategoryName;
-                expenseId.UserId = expense.UserId;
-                dbContext.Expense.Update(expenseId);
-                await dbContext.SaveChangesAsync();
-
-                return expenseId;
-            }
-            else
-            {
-                throw new Exception($"Despesa não encontra");
-
-            }
-        }
-        public async Task<bool> DeleteExpense(int id)
-        {
-            Expense expenseid = await GetExpenseById(id);
-
-            if (expenseid == null)
-            {
-                throw new Exception($"Despesa não encontrado");
-            }
-            else
-            {
-                dbContext.Expense.Remove(expenseid);
-                await dbContext.SaveChangesAsync();
-                return true;
-            }
-        }
-    }
-}*/

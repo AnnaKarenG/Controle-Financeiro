@@ -122,7 +122,7 @@ CREATE PROCEDURE [dbo].[GetAllExpense]
 AS
 BEGIN
     SELECT
-	  [ExpenseId]
+	  [ExpenseId],
 	  [Value],
 	  [Description],
 	  [type],
@@ -156,7 +156,7 @@ CREATE PROCEDURE [dbo].[GetExpenseById]
 AS
 BEGIN
     SELECT
-	  [ExpenseId]
+	  [ExpenseId],
 	  [Value],
 	  [Description],
 	  [type],
